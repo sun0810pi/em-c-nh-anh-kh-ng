@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anh nhớ em ❤️</title>
+
+  <!-- ===================== FONT ===================== -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ===== ANIMATED GRADIENT BACKGROUND ===== */
+    body {
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem 1rem;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #fce4ec, #f3e5f5, #e8eaf6, #fce4ec);
+      background-size: 400% 400%;
+      animation: gradientShift 10s ease infinite;
+    }
+
+    /* Nền chuyển màu nhẹ nhàng */
+    @keyframes gradientShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ===== CARD CHÍNH ===== */
+    .card {
+      background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      padding: 2.5rem 2rem;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 8px 32px rgba(236,64,122,0.12);
+      animation: fadeInUp 1.2s ease both;
+    }
+
+    /* Fade-in từ dưới lên */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== ICON TRÁI TIM LỚN ===== */
+    .big-heart {
+      font-size: 4rem;
+      animation: heartbeat 1.4s ease-in-out infinite;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Hiệu ứng đập tim */
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      14%       { transform: scale(1.18); }
+      28%       { transform: scale(1); }
+      42%       { transform: scale(1.12); }
+      70%       { transform: scale(1); }
+    }
+
+    /* ===== TIÊU ĐỀ CHÍNH với TYPING EFFECT ===== */
+    .main-title {
+      font-size: clamp(1.5rem, 5vw, 2rem);
+      font-weight: 700;
+      color: #c2185b;
+      margin-bottom: 1.2rem;
+      min-height: 2.5rem;
+    }
+
+    /* Con trỏ nhấp nháy */
+    .cursor {
+      display: inline-block;
+      background: #c2185b;
+      width: 2px;
+      height: 1.2em;
+      vertical-align: middle;
+      margin-left: 2px;
+      animation: blink 0.75s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    /* ===== ĐOẠN TEXT PHỤ ===== */
+    .sub-text {
+      font-size: 1rem;
+      color: #7b5ea7;
+      line-height: 1.7;
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      animation: fadeIn 1s ease 3.5s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* ===== NÚT BẤM ===== */
+    .btn-miss {
+      background: linear-gradient(135deg, #f48fb1, #ce93d8);
+      color: #fff;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 999px;
+      padding: 0.75rem 2rem;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(206,147,216,0.4);
+      transition: transform 0.15s, box-shadow 0.15s;
+      opacity: 0;
+      animation: fadeIn 1s ease 4.5s forwards;
+    }
+
+    .btn-miss:hover  { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(206,147,216,0.5); }
+    .btn-miss:active { transform: scale(0.96); }
+
+    /* ===== POPUP / MODAL ===== */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(230,100,150,0.18);
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+
+    .overlay.show { display: flex; }
+
+    .popup {
+      background: #fff;
+      border-radius: 1.5rem;
+      padding: 2rem 2.5rem;
+      text-align: center;
+      box-shadow: 0 12px 40px rgba(194,24,91,0.2);
+      animation: popIn 0.35s cubic-bezier(0.34,1.56,0.64,1) both;
+      max-width: 320px;
+      width: 90%;
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.7); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .popup p {
+      font-size: 1.3rem;
+      color: #c2185b;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .popup button {
+      background: linear-gradient(135deg, #f48fb1, #ce93d8);
+      color: #fff;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 999px;
+      padding: 0.5rem 1.5rem;
+      cursor: pointer;
+    }
+
+    /* ===== TRÁI TIM FLOATING (nền) ===== */
+    #hearts-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .fheart {
+      position: absolute;
+      bottom: -60px;
+      font-size: 1.4rem;
+      opacity: 0;
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      0%   { transform: translateY(0) scale(0.8) rotate(-10deg); opacity: 0.7; }
+      80%  { opacity: 0.5; }
+      100% { transform: translateY(-110vh) scale(1.1) rotate(15deg); opacity: 0; }
+    }
+
+    /* ===== TRÁI TIM CLICK CHUỘT ===== */
+    .click-heart {
+      position: fixed;
+      font-size: 1.6rem;
+      pointer-events: none;
+      z-index: 999;
+      animation: riseUp 0.9s ease forwards;
+    }
+
+    @keyframes riseUp {
+      0%   { opacity: 1;  transform: translate(-50%, 0) scale(1); }
+      100% { opacity: 0;  transform: translate(-50%, -80px) scale(1.5); }
+    }
+
+    /* ===== ĐẢM BẢO CARD Ở TRÊN NỀN ===== */
+    .card { position: relative; z-index: 1; }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NỀN TRÁI TIM FLOATING ===== -->
+  <div id="hearts-bg"></div>
+
+  <!-- ===== CARD CHÍNH ===== -->
+  <div class="card">
+
+    <!-- Icon đập tim -->
+    <div class="big-heart">💗</div>
+
+    <!-- Tiêu đề với typing effect -->
+    <div class="main-title">
+      <span id="typed-text"></span><span class="cursor" id="cursor"></span>
+    </div>
+
+    <!-- Đoạn text phụ -->
+    <p class="sub-text">
+      Không biết em đang làm gì,<br>
+      nhưng anh đang nhớ em rất nhiều...
+    </p>
+
+    <!-- Nút bấm -->
+    <button class="btn-miss" onclick="showPopup()">Em có nhớ anh không? 🥺</button>
+
+  </div>
+
+  <!-- ===== POPUP ===== -->
+  <div class="overlay" id="overlay" onclick="hidePopup(event)">
+    <div class="popup">
+      <div style="font-size:3rem; margin-bottom:0.5rem;">😚</div>
+      <p>Anh biết mà 😚</p>
+      <button onclick="hidePopup()">Đóng lại 💕</button>
+    </div>
+  </div>
+
+  <!-- ===== NHẠC NỀN ===== -->
+  <!--
+    Thay src bằng đường dẫn file nhạc bạn muốn.
+    Ví dụ: src="nhacnen.mp3" nếu đặt cùng thư mục.
+    Trình duyệt thường chặn autoplay; người dùng cần click trước.
+  -->
+  <audio id="bg-music" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    /* ======================================================
+       1. TYPING EFFECT – hiển thị từng ký tự cho tiêu đề
+    ====================================================== */
+    const fullText = 'Anh nhớ em nhiều lắm ❤️';
+    let index = 0;
+    const typedEl = document.getElementById('typed-text');
+    const cursorEl = document.getElementById('cursor');
+
+    function typeChar() {
+      if (index < fullText.length) {
+        // Dùng spread để đếm đúng emoji (1 ký tự)
+        typedEl.textContent += [...fullText][index];
+        index++;
+        setTimeout(typeChar, index < 10 ? 80 : 120);
+      } else {
+        // Ẩn cursor sau khi gõ xong (tuỳ chọn)
+        setTimeout(() => cursorEl.style.display = 'none', 1500);
+      }
+    }
+
+    // Bắt đầu gõ sau 0.6s
+    setTimeout(typeChar, 600);
+
+    /* ======================================================
+       2. FLOATING HEARTS – trái tim bay từ dưới lên
+    ====================================================== */
+    const container = document.getElementById('hearts-bg');
+    const heartChars = ['💕', '💗', '💓', '💞', '🩷', '❤️', '💖'];
+
+    function spawnHeart() {
+      const el = document.createElement('span');
+      el.className = 'fheart';
+      el.textContent = heartChars[Math.floor(Math.random() * heartChars.length)];
+
+      // Vị trí ngẫu nhiên theo chiều ngang
+      el.style.left = Math.random() * 96 + 'vw';
+
+      // Kích thước ngẫu nhiên
+      const size = 1 + Math.random() * 1.2;
+      el.style.fontSize = size + 'rem';
+
+      // Thời gian bay ngẫu nhiên
+      const dur = 6 + Math.random() * 8;
+      el.style.animationDuration = dur + 's';
+
+      // Delay nhỏ để không xuất hiện đồng loạt
+      el.style.animationDelay = Math.random() * 4 + 's';
+
+      container.appendChild(el);
+
+      // Xoá phần tử sau khi bay xong (tiết kiệm DOM)
+      setTimeout(() => el.remove(), (dur + 4) * 1000);
+    }
+
+    // Tạo heart ban đầu
+    for (let i = 0; i < 12; i++) spawnHeart();
+
+    // Tạo thêm mỗi 1.5 giây
+    setInterval(spawnHeart, 1500);
+
+    /* ======================================================
+       3. POPUP – hiện / ẩn hộp thoại
+    ====================================================== */
+    function showPopup() {
+      document.getElementById('overlay').classList.add('show');
+    }
+
+    function hidePopup(e) {
+      // Đóng khi click overlay hoặc nút đóng
+      if (!e || e.target === document.getElementById('overlay') || e.target.tagName === 'BUTTON') {
+        document.getElementById('overlay').classList.remove('show');
+      }
+    }
+
+    /* ======================================================
+       4. CLICK-TO-HEART – trái tim xuất hiện khi click chuột
+    ====================================================== */
+    document.addEventListener('click', function (e) {
+      // Không tạo nếu đang click nút hoặc popup
+      if (e.target.closest('.popup, .btn-miss')) return;
+
+      const el = document.createElement('span');
+      el.className = 'click-heart';
+      el.textContent = heartChars[Math.floor(Math.random() * heartChars.length)];
+      el.style.left = e.clientX + 'px';
+      el.style.top  = e.clientY + 'px';
+      document.body.appendChild(el);
+
+      // Xoá sau khi animation xong
+      el.addEventListener('animationend', () => el.remove());
+    });
+
+    /* ======================================================
+       5. NHẠC NỀN – tự phát sau lần tương tác đầu tiên
+    ====================================================== */
+    const music = document.getElementById('bg-music');
+    let musicStarted = false;
+
+    function startMusic() {
+      if (!musicStarted) {
+        musicStarted = true;
+        music.volume = 0.25; // Âm lượng nhẹ (0–1)
+        music.play().catch(() => {}); // Bỏ qua lỗi nếu bị chặn
+      }
+    }
+
+    // Phát nhạc sau lần click đầu tiên của người dùng
+    document.addEventListener('click', startMusic, { once: true });
+  </script>
+</body>
+</html>
